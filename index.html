@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>じぶん軸 — 一番輝けるカードを見つけるキャリア自己理解アプリ</title>
+  <meta name="description" content="30秒の質問で、あなたの“働き方タイプ”と強みを言葉に。完全オンデバイスで動く、静かなキャリア自己理解アプリ「じぶん軸」。">
+
+  <meta property="og:title" content="じぶん軸 — 一番輝けるカードを。">
+  <meta property="og:description" content="30秒の質問で、あなたの“働き方タイプ”と強みを言葉に。完全オンデバイスのキャリア自己理解アプリ。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://takepon7.github.io/jibunjiku-pages/">
+  <meta property="og:image" content="https://takepon7.github.io/jibunjiku-pages/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="じぶん軸 — 一番輝けるカードを。">
+  <meta name="twitter:description" content="30秒の質問で、あなたの“働き方タイプ”と強みを言葉に。">
+  <meta name="twitter:image" content="https://takepon7.github.io/jibunjiku-pages/assets/ogp.png">
+
+  <style>
+    :root {
+      --bg: #FAF8F3;
+      --surface: #FFFFFF;
+      --ink: #1C1917;
+      --ink-soft: #57534E;
+      --border: #E7E2D9;
+      --vermilion: #C55A48;
+      --coral: #FF7A50;
+      --blue: #1D4ED8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, "Hiragino Sans", sans-serif;
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--vermilion); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 72px 0; }
+    .eyebrow {
+      font-size: 0.8rem; letter-spacing: 0.12em; color: var(--vermilion);
+      font-weight: 700; margin: 0 0 12px; text-align: center;
+    }
+    h2.section-title {
+      font-size: 1.5rem; text-align: center; margin: 0 0 8px; line-height: 1.5;
+    }
+    .section-lead {
+      text-align: center; color: var(--ink-soft); margin: 0 auto 44px;
+      max-width: 640px; font-size: 0.98rem;
+    }
+
+    /* App Store button */
+    .appstore-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ink); color: #fff; text-decoration: none;
+      padding: 14px 28px; border-radius: 14px; font-size: 1rem; font-weight: 600;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .appstore-btn:hover { transform: translateY(-1px); opacity: 0.92; }
+    .appstore-btn svg { width: 18px; height: 18px; }
+
+    /* Hero */
+    .hero { text-align: center; padding-top: 88px; padding-bottom: 56px; }
+    .hero-icon {
+      width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px;
+      box-shadow: 0 10px 30px rgba(28,25,23,0.12);
+    }
+    .hero h1 {
+      font-size: 2rem; line-height: 1.5; margin: 0 0 18px; letter-spacing: 0.01em;
+    }
+    .hero .sub {
+      color: var(--ink-soft); font-size: 1.05rem; margin: 0 auto 32px; max-width: 540px;
+    }
+
+    /* Cards grid (empathy) */
+    .grid-3 {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 22px;
+    }
+    .card .emoji { font-size: 1.6rem; margin-bottom: 10px; }
+    .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+    /* Flow */
+    .flow { display: grid; gap: 28px; grid-template-columns: repeat(3, 1fr); }
+    .flow-step { text-align: center; }
+    .flow-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--vermilion); color: #fff; font-weight: 700; font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+    .flow-step h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .flow-step p { margin: 0 0 18px; color: var(--ink-soft); font-size: 0.9rem; }
+    .flow-shot {
+      border-radius: 18px; border: 1px solid var(--border);
+      overflow: hidden; box-shadow: 0 8px 24px rgba(28,25,23,0.08);
+      max-width: 240px; margin: 0 auto;
+    }
+    .flow-shot.placeholder {
+      aspect-ratio: 3 / 4; display: flex; align-items: center; justify-content: center;
+      background: var(--surface); color: var(--ink-soft); font-size: 0.85rem;
+    }
+
+    /* Persona gallery */
+    .persona-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .persona {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 14px; text-align: center;
+    }
+    .persona img { width: 92px; height: 92px; margin: 0 auto 10px; }
+    .persona .name { font-weight: 700; font-size: 0.98rem; margin: 0 0 4px; }
+    .persona .tag { color: var(--ink-soft); font-size: 0.78rem; line-height: 1.6; margin: 0; }
+
+    /* Share card */
+    .share {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center;
+    }
+    .share-img {
+      border-radius: 18px; overflow: hidden; border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(28,25,23,0.10); max-width: 320px; margin: 0 auto;
+    }
+    .share-text h2 { font-size: 1.5rem; margin: 0 0 14px; line-height: 1.5; }
+    .share-text p { color: var(--ink-soft); margin: 0 0 10px; }
+    .hashtag {
+      display: inline-block; background: #fff; border: 1px solid var(--border);
+      border-radius: 999px; padding: 4px 14px; font-weight: 600; color: var(--vermilion);
+      font-size: 0.9rem;
+    }
+
+    /* Privacy */
+    .privacy { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .privacy .grid-3 .card { background: var(--bg); }
+
+    /* CTA band */
+    .cta-band { text-align: center; }
+    .cta-band h2 { font-size: 1.5rem; margin: 0 0 24px; line-height: 1.5; }
+
+    /* Footer */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 40px 0; text-align: center;
+    }
+    footer .links { margin: 22px 0 16px; font-size: 0.9rem; }
+    footer .links a { color: var(--ink-soft); text-decoration: none; margin: 0 10px; }
+    footer .links a:hover { color: var(--vermilion); }
+    footer .owner { color: var(--ink-soft); font-size: 0.85rem; margin: 0; }
+
+    @media (max-width: 760px) {
+      section { padding: 56px 0; }
+      .hero h1 { font-size: 1.55rem; }
+      .grid-3, .flow { grid-template-columns: 1fr; }
+      .persona-grid { grid-template-columns: repeat(2, 1fr); }
+      .share { grid-template-columns: 1fr; gap: 28px; }
+      .share-text { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <img class="hero-icon" src="assets/app_icon.png" alt="じぶん軸 アプリアイコン">
+      <h1>環境のせいにする前に、<br>一番輝けるカードを。</h1>
+      <p class="sub">30秒の質問で、あなたの“働き方タイプ”と強みを言葉に。</p>
+      <a class="appstore-btn" href="https://apps.apple.com/jp/app/id6779044621">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        App Store でひらく
+      </a>
+    </div>
+  </header>
+
+  <!-- 2. 課題共感 -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">こんなモヤモヤ、ありませんか</p>
+      <h2 class="section-title">「自分のこと」が、一番むずかしい。</h2>
+      <p class="section-lead">就活でも、転職でも、いまの働き方でも。言葉にできないだけで、答えは自分の中にあるのかもしれません。</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="emoji">🥶</div>
+          <h3>強みを聞かれて、固まる。</h3>
+          <p>面接でも自己紹介でも、いざ言葉にしようとすると手が止まる。</p>
+        </div>
+        <div class="card">
+          <div class="emoji">🧭</div>
+          <h3>“向いてる仕事”が、わからない。</h3>
+          <p>選択肢は多いのに、自分に合う方角だけが見えてこない。</p>
+        </div>
+        <div class="card">
+          <div class="emoji">🌫️</div>
+          <h3>今の働き方に、なんとなくモヤモヤ。</h3>
+          <p>不満というほどではない。でも、しっくりは来ていない。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 体験フロー -->
+  <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <p class="eyebrow">使ってみる</p>
+      <h2 class="section-title">3ステップで、じぶんが言葉になる。</h2>
+      <p class="section-lead">むずかしい設定も、アカウント登録もなし。問いに答えていくだけ。</p>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h3>30秒の診断</h3>
+          <p>直感で答えるシンプルな質問に。</p>
+          <div class="flow-shot">
+            <img src="assets/screen_home.png" alt="じぶん軸のホーム画面。今日の問いと診断のはじまり。">
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h3>8タイプ＋4文字コード</h3>
+          <p>MBTI風の4文字コードで、働き方タイプを表示。</p>
+          <div class="flow-shot">
+            <img src="assets/screen_result.png" alt="診断結果画面。働き方タイプと4文字コードの表示。">
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h3>強みカードで言語化</h3>
+          <p>あなたの強みが、そのまま使える言葉に。</p>
+          <div class="flow-shot">
+            <img src="assets/screen_share.png" alt="強みカードの画面。言語化された強みのまとめ。">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 8キャラ gallery -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">8つのタイプ</p>
+      <h2 class="section-title">あなたは、どの型？</h2>
+      <p class="section-lead">それぞれに違う輝き方がある。優劣ではなく、向き不向きの話。</p>
+      <div class="persona-grid">
+        <div class="persona">
+          <img src="assets/persona_self_driver.png" alt="自走型のキャラクター">
+          <p class="name">自走型</p>
+          <p class="tag">自分の裁量とペースで、道を切り拓く</p>
+        </div>
+        <div class="persona">
+          <img src="assets/persona_creator.png" alt="ゼロイチ型のキャラクター">
+          <p class="name">ゼロイチ型</p>
+          <p class="tag">ないものを、形にする創り手</p>
+        </div>
+        <div class="persona">
+          <img src="assets/persona_achiever.png" alt="やり切り型のキャラクター">
+          <p class="name">やり切り型</p>
+          <p class="tag">成果で語る、達成ドリブン</p>
+        </div>
+        <div class="persona">
+          <img src="assets/persona_architect.png" alt="設計者型のキャラクター">
+          <p class="name">設計者型</p>
+          <p class="tag">仕組みと段取りで、複雑を整える</p>
+        </div>
+        <div class="persona">
+          <img src="assets/persona_explorer.png" alt="探究型のキャラクター">
+          <p class="name">探究型</p>
+          <p class="tag">深く掘り、学び続ける</p>
+        </div>
+        <div class="persona">
+          <img src="assets/persona_connector.png" alt="巻き込み型のキャラクター">
+          <p class="name">巻き込み型</p>
+          <p class="tag">人と力を合わせ、前に進める</p>
+        </div>
+        <div class="persona">
+          <img src="assets/persona_supporter.png" alt="支え手型のキャラクター">
+          <p class="name">支え手型</p>
+          <p class="tag">誰かの役に立つことで輝く</p>
+        </div>
+        <div class="persona">
+          <img src="assets/persona_builder.png" alt="積み上げ型のキャラクター">
+          <p class="name">積み上げ型</p>
+          <p class="tag">着実に、信頼を積み重ねる</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. シェアカード -->
+  <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="share">
+        <div class="share-img">
+          <img src="assets/share_card_story.png" alt="じぶん軸の診断結果シェアカードのサンプル">
+        </div>
+        <div class="share-text">
+          <p class="eyebrow" style="text-align:left;">みせあう</p>
+          <h2>結果は、1枚の画像に。</h2>
+          <p>診断のあとに生まれる、自分だけのカード。友だちと見せ合えば、お互いの「らしさ」が話のタネに。</p>
+          <p><span class="hashtag">#じぶん軸</span> で見せ合える。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. プライバシー差別化 -->
+  <section class="privacy">
+    <div class="wrap">
+      <p class="eyebrow">安心して、ひとりで向き合える</p>
+      <h2 class="section-title">あなたの記録は、あなたの端末の中だけに。</h2>
+      <p class="section-lead">自己理解は、いちばんプライベートな時間。だから、外には出しません。</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="emoji">📱</div>
+          <h3>完全オンデバイス処理</h3>
+          <p>診断もAIも端末内で完結。外部サーバーへ送信しません。</p>
+        </div>
+        <div class="card">
+          <div class="emoji">🔓</div>
+          <h3>アカウント登録なし</h3>
+          <p>メールも電話番号も不要。ひらいたその瞬間から使えます。</p>
+        </div>
+        <div class="card">
+          <div class="emoji">🚫</div>
+          <h3>広告なし</h3>
+          <p>余計なものを挟まず、じぶんと向き合うことだけに。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + Footer -->
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>そろそろ、じぶんの軸を。</h2>
+      <a class="appstore-btn" href="https://apps.apple.com/jp/app/id6779044621">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        App Store でひらく
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p style="font-weight:700;margin:0;">じぶん軸</p>
+      <div class="links">
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="terms.html">利用規約</a>
+        <a href="support.html">サポート</a>
+      </div>
+      <p class="owner">運営者：TKDR</p>
+    </div>
+  </footer>
+
+</body>
+</html>
